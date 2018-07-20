@@ -1,0 +1,28 @@
+﻿@using Tatoeba.Models
+@model ViewModel
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div align="center">
+        <form method="post" asp-action="Index">
+            <select asp-for="@Model.currentLang" asp-items="@Html.GetEnumSelectList<Language>()"></select>
+            <input type="submit" value="OK" />
+        </form>
+    </div>
+
+    @if (Model.currentLang != Language.Language) {
+    <div style="display: flex">
+        <div style="flex: 30%"> @*<div class="column1" align="center" style="flex:50%; padding:10px; border-right: 1px solid black;">*@
+            @await Component.InvokeAsync("Lemma")
+        </div>
+
+        <div style="flex: 70%"> @*<div class="column2" align="center" style="flex:50%; padding:10px; border-left: 1px solid black;">*@
+            @await Component.InvokeAsync("Sentence")
+        </div>
+    </div>
+    }
+</body>
+</html>

@@ -1,0 +1,12 @@
+﻿@using Tatoeba.Models
+@model Lemma
+
+<tr>
+<form method="post" action="@Url.Action("Edit", "Home")">
+    <input asp-for="@Model.id" type="hidden" />
+    <input asp-for="@Model.lang" type="hidden" />
+    <td><input asp-for="@Model.lexeme" value="@Model.lexeme" placeholder="Lemma" /></td>
+    <td><input asp-for="@Model.gloss" value="@Model.gloss" placeholder="Gloss"/></td>
+    <td><input type="submit" value="OK" /></td>
+</form>
+</tr>

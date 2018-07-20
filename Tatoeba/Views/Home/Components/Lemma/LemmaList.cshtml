@@ -1,0 +1,25 @@
+﻿@using Tatoeba.Models
+@model ViewModel
+
+<table>
+    <partial name="_Add" model="@Model" />
+    @{var editID = Url.ActionContext.RouteData.Values["id"]; }
+    @foreach (Lemma lemma in Model.LemmaList)
+    {
+        if (lemma.lang == Model.currentLang)
+        {
+            if (editID != null && lemma.id.ToString() == editID.ToString()) {
+                <partial name="_Edit" model="@lemma" />
+            }
+            else {
+                <tr>
+                    <td>@lemma.lexeme</td>
+                    <td>@lemma.gloss</td>
+                    <td><button onclick=location.href="/Home/Index/@lemma.id">Edit</button></td>
+                    <td><input type="submit" onclick=location.href="@Url.Action("Index", "Home", new { id = lemma.id })" value="Delete"/></td>
+                    <td><input type="submit" onclick=location.href="/Home/Delete/@lemma.id" value="Del" /></td>
+                </tr>
+            }
+        }
+    }
+</table>

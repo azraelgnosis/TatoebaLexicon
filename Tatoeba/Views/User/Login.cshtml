@@ -1,0 +1,42 @@
+﻿@using Tatoeba.Models
+@model User
+
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    @{ var idObj = Url.ActionContext.RouteData.Values["id"];
+        var idStr = idObj != null ? idObj.ToString() : null;
+        if (idStr != null)
+        {
+            switch (idStr)
+            {
+                case "-1": <p> Incorrect username or password.</p> break;
+                case "-2": <p> Username is taken.</p> break;
+                case "-3": <p> Password cannot be empty. </p> break;
+                case "-4": <p> Passwords must match. </p> break;
+                case "2": <p> User added.</p> break;
+            }
+            @*if (idStr == "-1") {<p>Incorrect username or password.</p>}
+                    if (idStr == "-2") {<p>Username is taken.</p>}
+                    if (idStr == "2") { <p>User added.</p>}
+                }*@
+        }
+    }
+
+    <form method="post" action="@Url.Action("Login", "User")">
+        <input asp-for="@Model.username" placeholder="Username" />
+        <input asp-for="@Model.password" value=@String.Empty type="password" placeholder="Password" />
+        <input type="submit" name="Login" value="Login" />
+    </form>
+    <button onclick=location.href="/User/Login/1">New User</button>
+
+    @{ if (idStr != null)
+        {
+            if (idStr == "1")
+            {<partial name="_NewUser" />}
+        }
+    }
+
+</body>

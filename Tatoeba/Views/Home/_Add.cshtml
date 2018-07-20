@@ -1,0 +1,11 @@
+﻿@using Tatoeba.Models
+@model ViewModel
+
+<tr>
+    <form method="post" asp-action="Add">
+        <input type="hidden" asp-for="@Model.lemma.lang" value="@Model.currentLang"/>
+        <td><input asp-for="@Model.lemma.lexeme" placeholder="Lemma" /></td>
+        <td><input asp-for="@Model.lemma.gloss" placeholder="Gloss" /></td>
+        <td><button>Add</button></td>
+    </form>
+</tr>

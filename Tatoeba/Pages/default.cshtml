@@ -1,0 +1,14 @@
+﻿@using Tatoeba.Pages
+@model LoginModel
+
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <form method="post">
+        <input asp-for="user.username" placeholder="Username" />
+        <input asp-for="user.password" type="password" placeholder="Password" />
+        <input type="submit" value="Login" />
+    </form>
+</body>

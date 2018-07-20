@@ -1,0 +1,9 @@
+﻿@using Tatoeba.Models
+@model User
+
+<form method="post" action="@Url.Action("NewUser", "User")">
+    <input asp-for="@Model.username" placeholder="Username" />
+    <input asp-for="@Model.password" placeholder="Password" />
+    <input asp-for="@Model.confirmPassword" placeholder="Confirm Password" />
+    <input type="submit" value="Create User" />
+</form>
