@@ -1,6 +1,11 @@
 ﻿@using Tatoeba.Models
 @model List<string>
 
+<form method="post" action="@Url.Action("Filter", "Home")">
+    <input type="textbox" name="filter" placeholder="Filter..." />
+    <input type="submit" value="OK" />
+</form>
+
 @foreach (string sentence in Model)
 {
     <div>@sentence</div>

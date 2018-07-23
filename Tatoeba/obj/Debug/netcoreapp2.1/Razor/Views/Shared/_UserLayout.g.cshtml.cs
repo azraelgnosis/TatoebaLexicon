@@ -44,7 +44,7 @@ namespace Tatoeba.Views.Shared
             WriteLiteral("<!DOCTYPE html>\n\n<html>\n    ");
             EndContext();
             BeginContext(28, 118, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "687b5829622a4d5f8e6d1dac0ba89127", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e07b4fc577f74bb089554f5b11c5fde4", async() => {
                 BeginContext(34, 78, true);
                 WriteLiteral("\n        <meta name=\"viewport\" content=\"width=device-width\" />\n        <title>");
                 EndContext();
@@ -74,7 +74,7 @@ namespace Tatoeba.Views.Shared
             WriteLiteral("\n    ");
             EndContext();
             BeginContext(151, 73, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a2f3fd46aa2a43eca3ed3e6a3e6d4136", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2235738a4483488598daa89f9ea82e56", async() => {
                 BeginContext(157, 27, true);
                 WriteLiteral("\n        <div>\n            ");
                 EndContext();

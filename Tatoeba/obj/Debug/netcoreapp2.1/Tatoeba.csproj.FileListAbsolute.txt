@@ -17,7 +17,6 @@
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Tatoeba.TagHelpers.input.cache
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Tatoeba.TagHelpers.output.cache
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Tatoeba.RazorCoreGenerate.cache
-/Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Razor/Pages/_ViewImports.g.cshtml.cs
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Razor/Views/Shared/_Layout.g.cshtml.cs
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Razor/Views/_ViewImports.g.cshtml.cs
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Tatoeba.RazorTargetAssemblyInfo.cs
@@ -25,7 +24,6 @@
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Tatoeba.csproj.CopyComplete
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Razor/Views/Home/Index.g.cshtml.cs
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Razor/Views/_ViewStart.g.cshtml.cs
-/Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Razor/Pages/default.g.cshtml.cs
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Razor/Views/User/Login.g.cshtml.cs
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Razor/Views/User/_NewUser.g.cshtml.cs
 /Users/trevarissmall/Projects/dotNet/Tatoeba/Tatoeba/obj/Debug/netcoreapp2.1/Razor/Views/Shared/_UserLayout.g.cshtml.cs

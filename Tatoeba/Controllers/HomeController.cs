@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Tatoeba.Models;
 
 namespace Tatoeba.Controllers
@@ -13,10 +14,14 @@ namespace Tatoeba.Controllers
         ViewModel VM;
         string path;
 
+/*----------------------------------------------------------------------------*/
+
         public HomeController(IViewModel viewModel) {
             VM = (ViewModel) viewModel;
             if (VM.user != null) path = Path.GetFullPath($"Files/Users/{VM.user}.csv");
         }
+
+/*----------------------------------------------------------------------------*/
 
         [HttpGet]
         public IActionResult Index([FromQuery] string name)
@@ -27,13 +32,13 @@ namespace Tatoeba.Controllers
                 }
             if (VM.user != null) path = Path.GetFullPath($"Files/Users/{VM.user}.csv");
             GetLemmas();
+            GetLanguages();
             return View(VM);
         }
 
         [HttpPost]
         public IActionResult Index(ViewModel model) {
             VM.currentLang = model.currentLang;
-            if (VM.currentLang != Language.Language) { GenSentenceList(VM.currentLang); }
             return View(VM);
         }
 
@@ -42,8 +47,13 @@ namespace Tatoeba.Controllers
         [HttpPost]
         public IActionResult Add(ViewModel addModel)
         {
-            AddLemma(addModel.lemma);
-            return RedirectToAction("Index");
+            if (!VM.LemmaList.Exists(l => l.lexeme == addModel.lemma.lexeme && l.lang == addModel.lemma.lang))
+            {
+                AddLemma(addModel.lemma);
+                return RedirectToAction("Index");
+            } else {
+                return RedirectToAction("Index", new { id = -1 });
+            }
         }
 
 /*----------------------------------------------------------------------------*/
@@ -56,10 +66,27 @@ namespace Tatoeba.Controllers
 
 /*----------------------------------------------------------------------------*/
 
-        [HttpPost]
-        public IActionResult Delete(int deleteID)
+        public IActionResult Delete(int id)
         {
-            DeleteLemma(deleteID);
+            DeleteLemma(id);
+            WriteListToFile();
+            return RedirectToAction("Index");
+        }
+
+/*----------------------------------------------------------------------------*/
+
+        public IActionResult Filter(string filter) {
+            VM.filter = filter;
+            return RedirectToAction("Index");
+        }
+
+/*----------------------------------------------------------------------------*/
+
+        public IActionResult AddLang(Language newLang) {
+            if (!System.IO.File.Exists(Path.GetFullPath($"Files/SentenceLists/{newLang.ToString()}.csv")))
+            {
+                GenSentenceList(newLang);
+            }
             return RedirectToAction("Index");
         }
 
@@ -70,15 +97,49 @@ namespace Tatoeba.Controllers
         {
             VM.LemmaList = new List<Lemma>();
             VM.lemmaIDs = new List<int>();
+            List<Language> userLangs = new List<Language>();
+
             StreamReader SR = new StreamReader(path);
             string line = SR.ReadLine();
-            while (line != null) {
+            while (line != null)
+            {
+                string[] arr = line.Split(',');
                 VM.LemmaList.Add(Lemma.FromLine(line));
-                VM.lemmaIDs.Add(int.Parse(line.Split(',')[0]));
+                VM.lemmaIDs.Add(int.Parse(arr[0]));
                 line = SR.ReadLine();
             }
             SR.Close();
             VM.LemmaList.Sort();
+ 
+        }
+
+/*----------------------------------------------------------------------------*/
+
+        private void GetLanguages() {
+            List<Language> userLangs = new List<Language>();
+            Language[] languages = (Language[])Enum.GetValues(typeof(Language));
+            foreach (Language language in languages) {
+                if (System.IO.File.Exists(Path.GetFullPath($"Files/SentenceLists/{language}.csv"))) {
+                    userLangs.Add(language);
+                }
+            }
+
+            VM.userLanguages = userLangs.Select(l => new SelectListItem()
+            {
+                Text = l.ToString(),
+                Value = l.ToString()
+            });
+            //
+            //Language langCode = Enum.Parse<Language>(arr[1]);
+            //if (!userLangs.Contains(langCode))
+            //{
+            //    userLangs.Add(langCode);
+            //}
+            //VM.userLanguages = userLangs.Select(l => new SelectListItem()
+            //{
+            //    Text = l.ToString(),
+            //    Value = l.ToString()
+            //});
         }
 
 /*----------------------------------------------------------------------------*/
@@ -110,6 +171,17 @@ namespace Tatoeba.Controllers
             Lemma delLemma = VM.LemmaList.Find(l => l.id == deleteID);
             VM.LemmaList.Remove(delLemma);
             }
+
+/*----------------------------------------------------------------------------*/
+
+        private void WriteListToFile() {
+            StreamWriter SW = new StreamWriter(Path.GetFullPath(path));
+            foreach (Lemma lemma in VM.LemmaList)
+            {
+                SW.WriteLine(lemma.ToLine());
+            }
+            SW.Close();
+        }
 
 /*----------------------------------------------------------------------------*/
 

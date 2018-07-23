@@ -16,8 +16,8 @@
                     <td>@lemma.lexeme</td>
                     <td>@lemma.gloss</td>
                     <td><button onclick=location.href="/Home/Index/@lemma.id">Edit</button></td>
-                    <td><input type="submit" onclick=location.href="@Url.Action("Index", "Home", new { id = lemma.id })" value="Delete"/></td>
-                    <td><input type="submit" onclick=location.href="/Home/Delete/@lemma.id" value="Del" /></td>
+                    @*<td><input type="submit" onclick=location.href="@Url.Action("Delete", "Home", new { id = lemma.id })" value="Delete"/></td>*@
+                    <td><button onclick=location.href="/Home/Delete/@lemma.id">Delete</button></td>
                 </tr>
             }
         }

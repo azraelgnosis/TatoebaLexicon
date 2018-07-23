@@ -4,12 +4,27 @@
 <html>
 <head>
     <title></title>
+
 </head>
 <body>
+    @{ var pageID = Url.ActionContext.RouteData.Values["id"];
+        if (pageID != null && pageID.ToString() == "-1") {
+            <p>Lemma already exists.</p>
+        }
+    }
+
     <div align="center">
         <form method="post" asp-action="Index">
-            <select asp-for="@Model.currentLang" asp-items="@Html.GetEnumSelectList<Language>()"></select>
+            <select asp-for="@Model.currentLang" asp-items="@Model.userLanguages" ></select>
             <input type="submit" value="OK" />
+        </form>
+    </div>
+
+
+    <div align="right">
+        <form mehtod="post" asp-action="AddLang">
+            <select name="newLang" asp-for="@Model.currentLang" asp-items="@Html.GetEnumSelectList<Language>()"></select>
+            <input type="submit" value="Add Language" />
         </form>
     </div>
 
